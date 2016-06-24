@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Unifile.Models.MvcModel.MvcImage>
+
+<div id="searchresults">
+    <hr />
+    <h3>SEARCH RESULTS:</h3>
+    <div>
+        @if (Model == null)
+        {
+            <h5><i>No images found</i></h5>
+        }
+        else
+        {
+            int i = 1;
+            <div class="container">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <h3>#@i</h3>
+                        <div>
+                            <h4>@item.Name</h4>
+                            <img src="@Url.Content(item.Path)" style="width: 90%" />
+                            <h5>Attached to card: @item.CardTitle</h5>
+                        </div>
+                    </div>
+                    i++;
+                }
+            </div>
+        }
+    </div>
+</div>

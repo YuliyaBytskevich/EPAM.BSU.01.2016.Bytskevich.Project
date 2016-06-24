@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Unifile.Models.MvcModel.MvcAudioFile>
+
+    <table>
+        <tr>
+            <td><img src="@Url.Content("~/Content/imgs/music.png")" style="width: 70px" /></td>
+            <td>
+                @if (Model.Any())
+                {
+                    <ul>
+                        @foreach (var audio in @Model)
+                        {
+                            <li><b>
+                                @Html.RouteLink(audio.Author + " - " + audio.Name, new
+                                {
+                                    controller = "AudioAttachment",
+                                    action = "PlayAudio",
+                                    audioId = audio.Id
+                                })
+                                </b>
+                                <br/>
+                                @Html.ActionLink("download", "DownloadAudio", new { audioId = audio.Id })
+                            </li>                           
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <h5 style="padding-left: 20px"><i>Card has no audio attachments</i></h5>
+                }
+            </td>
+        </tr>
+    </table>

@@ -1,0 +1,51 @@
+﻿@using Unifile.Helpers
+@model Unifile.Models.CardsListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Unifile catalog";
+}
+
+<h2>CARDS CATALOG</h2>
+
+<div class="row">
+
+    <div id="categories" class="col-md-2">
+        @{Html.RenderAction("CategoriesMenu", "Home"); }
+    </div>
+    <div class="col-md-10">
+        <table class="table">
+            <tr>
+                <td></td>
+                <td>TITLE</td>
+                <td>CATEGORY</td>
+                <td>DESCRIPTION</td>
+                <td>DATE OF CREATION</td>
+                <td>AUTHOR</td>           
+            </tr>
+            @foreach (var item in Model.Cards)
+            {
+                <tr>
+                    <td><img src="@Url.Content(item.Cover)" style="width: 100px" /></td>
+                    <td>@Html.RouteLink(item.Title, new
+                        {
+                            controller = "Card",
+                            action = "Index",
+                            cardId = item.Id
+                        })
+                    </td>
+                    <td>@item.Category</td>
+                    <td>@item.Description</td>
+                    <td>@item.DateOfCreation</td>
+                    <td>@item.Author</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div class="col-md-2"></div>
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new {currentCategory = @Model.CurrentCategory, pageNum = x}))
+</div>
+

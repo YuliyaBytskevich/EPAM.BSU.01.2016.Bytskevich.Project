@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Unifile.Models.MvcModel.MvcTextFile>
+
+<table>
+    <tr>
+        <td><img src="@Url.Content("~/Content/imgs/doc.png")" style="width: 70px" /></td>
+        <td>
+            @if (Model.Any())
+            {
+                <ul>
+                    @foreach (var text in @Model)
+                    {
+                        <li>
+                            <b>@text.Author - @text.Name</b><br/>
+                            @Html.ActionLink("download", "DownloadText", new {textId = text.Id})
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <h5 style="padding-left: 20px"><i>Card has no text attachments</i></h5>
+            }
+        </td>
+    </tr>
+</table>
+

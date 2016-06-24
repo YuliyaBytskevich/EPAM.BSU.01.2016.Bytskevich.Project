@@ -1,0 +1,101 @@
+﻿@using System.Web.Optimization;
+
+@{
+    ViewBag.Title = "Variable search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    @*<div class="col-md-2">
+        <h3>SEARCH BY TITLE</h3>
+        @using (Ajax.BeginForm("FindByCardTitle", new AjaxOptions {UpdateTargetId = "results"}))
+        {
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input class="form-control" id="title" type="text" name="title"/>
+            </div>
+            <input class="form-control" type="submit" value="Find cards"/>
+        }
+    </div>*@
+    <div class="col-md-4">
+        <h3>CARDS SEARCH </h3>
+        @using (Ajax.BeginForm("FindByGivenParameters", new AjaxOptions {UpdateTargetId = "results"}))
+        {
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input class="form-control" id="title" type="text" name="title"/>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input class="form-control" id="category" type="text" name="category"/>
+            </div>
+            <div class="form-group">
+                <label for="description">Keyword from description:</label>
+                <input class="form-control" id="description" type="text" name="descriptionKeywords"/>
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input class="form-control" id="author" type="text" name="author"/>
+            </div>
+            <div class="form-group">
+                <label for="dateOfCreation">DateOfCreation:</label>
+                <input class="form-control" id="dateOfCreation" type="date" name="dateOfCreation"/>
+            </div>
+            <input class="form-control" type="submit" value="Find cards"/>
+        }
+    </div>
+    <div class="col-md-8">
+        <h3>ATTACHMENTS SEARCH </h3>
+                <div class="col-md-4">
+                    <h4>AUDIO FILES</h4>
+                    @using (Ajax.BeginForm("FindAudiosByGivenParameters", "AudioAttachment", new AjaxOptions {UpdateTargetId = "results"}))
+                    {
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input class="form-control" id="name" type="text" name="name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author:</label>
+                            <input class="form-control" id="author" type="text" name="author"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="genre">Genre:</label>
+                            <input class="form-control" id="genre" type="text" name="genre"/>
+                        </div>
+                        <input class="form-control" type="submit" value="Find audios"/>
+                    }
+                </div>
+                <div class="col-md-4">
+                    <h4>IMAGES</h4>
+                    @using (Ajax.BeginForm("FindImagesByGivenParameters", "ImageAttachment", new AjaxOptions { UpdateTargetId = "results" }))
+                    {
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input class="form-control" id="author" type="text" name="name" />
+                        </div>
+                        <input class="form-control" type="submit" value="Find images" />
+                    }
+                </div>
+                <div class="col-md-4">
+                    <h4>TEXT FILES</h4>
+                    @using (Ajax.BeginForm("FindTextsByGivenParameters", "TextAttachment", new AjaxOptions { UpdateTargetId = "results" }))
+                    {
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input class="form-control" id="name" type="text" name="name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author:</label>
+                            <input class="form-control" id="author" type="text" name="author" />
+                        </div>
+                        <input class="form-control" type="submit" value="Find texts" />
+                    }
+                </div>
+
+    </div>
+</div>
+<div id="results"></div>
+
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

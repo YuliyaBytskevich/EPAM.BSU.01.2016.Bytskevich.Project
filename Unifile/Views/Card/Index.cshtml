@@ -1,0 +1,47 @@
+﻿@model Unifile.Models.MvcModel.MvcCard
+
+@{
+    ViewBag.Title = "Card";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+<hr/>
+<div style="display: inline-block">
+    <div class="col-md-3">
+        <img src="@Url.Content(@Model.Cover)" style="width: 90%"/>
+    </div>
+    <div class="col-md-9">
+        <h4>CATEGORY: @Html.RouteLink(@Model.Category, new
+                 {
+                     controller = "Home",
+                     action = "Index",
+                     currentCategory = @Model.Category,
+                     pageNum = 1
+                 })
+       </h4>
+        <h5>AUTHOR: @Model.Author</h5>
+        <h5>CREATED: @Model.DateOfCreation</h5>
+        <br/>
+        <table>
+            <tr>
+                <td><h4>RATE: </h4></td>
+                <td><img src="@Url.Content("~/Content/imgs/arrow-up.png")"/></td>
+                <td style="color: #1826B0"><b>@Model.PositiveRate</b></td>
+                <td>   </td>
+                <td><img src="@Url.Content("~/Content/imgs/arrow-down.png")" /></td>
+                <td style="color: #5B5D6B"><b>@Model.NegativeRate</b></td>
+            </tr>
+        </table>  
+        <hr/>
+        <h4>@Model.Description</h4>
+        <hr/>
+        <h4>ATTACHMENTS</h4>
+        @{Html.RenderAction("GetImages", "ImageAttachment", new {cardId = Model.Id}); }
+        <hr/>
+        @{Html.RenderAction("GetAudios", "AudioAttachment", new {cardId = Model.Id}); }
+        <hr />
+        @{Html.RenderAction("GetTexts", "TextAttachment", new { cardId = Model.Id }); }
+    </div>
+</div>
+

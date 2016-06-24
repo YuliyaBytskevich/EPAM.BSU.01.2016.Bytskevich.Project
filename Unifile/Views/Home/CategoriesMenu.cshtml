@@ -1,0 +1,18 @@
+﻿@using System.Web.Mvc.Html
+@model IEnumerable<Unifile.Models.MvcModel.MvcCategory>
+
+<h4>CATEGORIES</h4>
+<ul>
+@foreach (var category in Model)
+{
+    <li>
+    @Html.RouteLink(category.Name, new
+    {
+    controller = "Home",
+    action = "Index",
+    currentCategory = category.Name,
+    pageNum = 1
+    })
+    </li>
+}
+</ul>

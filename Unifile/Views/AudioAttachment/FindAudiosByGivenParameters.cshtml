@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Unifile.Models.MvcModel.MvcAudioFile>
+
+<div id="searchresults">
+    <hr />
+    <h3>SEARCH RESULTS:</h3>
+    <div >
+        @if (Model == null)
+        {
+            <h5><i>No audios found</i></h5>
+        }
+        else
+        {
+            int i = 1;
+            <div class="container">
+                @foreach (var item in Model)
+                {
+                <div class="col-md-3">
+                    <h3>#@i</h3>
+                    <div>
+                        <img src="@Url.Content("~/Content/imgs/note.png")" style="height: 24px"/>
+                        <h4>@item.Author - @item.Name</h4>
+                        <h5>Genre: @item.Genre</h5>
+                        <h5>Attached to card: @item.CardTitle</h5>
+                    </div>
+                </div>
+                i++;
+                }
+            </div>
+        }
+    </div>
+</div>
